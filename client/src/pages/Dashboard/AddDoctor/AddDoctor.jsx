@@ -24,7 +24,7 @@ const AddDoctor = () => {
         formData.append('name', doctor.name);
         formData.append('email', doctor.email);
 
-        const data= await fetch('http://localhost:3333/addDoctor', {
+        const data= await fetch('https://react-ecommerce-xdnc.onrender.com/addDoctor', {
             method: 'POST',
             body: formData
         })

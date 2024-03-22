@@ -128,7 +128,7 @@ const Register = () => {
         }
         
         try{
-            const response= await axios.post('http://localhost:3333/auth/register', {name:userDetails.name, mobile:userDetails.mobile, password:userDetails.password, photo:file}, 
+            const response= await axios.post('https://react-ecommerce-xdnc.onrender.com/auth/register', {name:userDetails.name, mobile:userDetails.mobile, password:userDetails.password, photo:file}, 
             {
                 headers:
                 {"Content-Type":"application/json"}

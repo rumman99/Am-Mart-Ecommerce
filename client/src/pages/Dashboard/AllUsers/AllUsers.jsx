@@ -12,7 +12,7 @@ const AllUsers = () => {
                 const {token} = JSON.parse(sessionStorage.getItem('user'));
 
                 if(token){
-                    const findedUsers= await axios.get('http://localhost:3333/auth/users', {headers:{'Authorization': `Bearer ${token}`}});
+                    const findedUsers= await axios.get('https://react-ecommerce-xdnc.onrender.com/auth/users', {headers:{'Authorization': `Bearer ${token}`}});
                     const data= await findedUsers.data;
                     setAllUsers(data);
                 }
