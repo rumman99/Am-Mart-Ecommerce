@@ -67,4 +67,11 @@ const allUser= asyncHandler(async(req, res)=>{
     res.status(200).send(searchUser);
 })
 
-module.exports= {registerUser, loginUser, allUser};
+// Get all User //
+const getUsers= asyncHandler(async(req, res)=>{
+    
+    const allUsers= await userModel.find({});
+    res.status(200).send(allUsers);
+})
+
+module.exports= {registerUser, loginUser, allUser, getUsers};

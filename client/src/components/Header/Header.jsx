@@ -32,7 +32,7 @@ const Header = () => {
 
                 <div className='cursor-pointer flex relative'>
                     <div className='mx-6 -mt-2'> 
-                    {user ? <Menu>
+                    {user ? <div><Menu>
                     <MenuButton>
                     <Avatar 
                     size='sm' 
@@ -47,7 +47,7 @@ const Header = () => {
                         <MenuDivider/>
                         <MenuItem onClick={logoutUser}>Logout</MenuItem>
                     </MenuList>
-                    </Menu> : <Link to={'/auth'}><button className="bg-blue-500 hover:bg-blue-700 text-white font-light py-1 px-4 rounded-full">Login</button></Link>}
+                    </Menu> <Link className='text-md mx-4 bg-blue-500 hover:bg-blue-700 text-white font-light py-1 px-4 rounded-full' to={'dashboard'}>Dashboard</Link></div> : <Link to={'/auth'}><button className="bg-blue-500 hover:bg-blue-700 text-white font-light py-1 px-4 rounded-full">Login</button></Link>}
                     </div>
                     
                     <div onClick={()=> setIsOpen(!isOpen)}>

@@ -1,0 +1,28 @@
+.sidebar{
+    background-color: #1cc7c1;
+    max-width: 315px;
+    height: 100vh;
+    padding-top: 50px;
+    padding-left: 50px;
+
+}
+
+.sidebar a{
+    text-decoration: none;
+    color: white;
+}
+
+.sidebar h6{
+    line-height: 3;
+}
+
+.iconStyle, .sidebar h6{
+    padding-left: 40px;
+    font-size: 18px;
+}
+
+.iconStyle{
+    color: white;
+    line-height: 2.8;
+    margin-right: 10px;
+}

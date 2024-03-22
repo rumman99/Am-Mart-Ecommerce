@@ -6,6 +6,8 @@ import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Sidebar from './components/Sidebar/Sidebar';
 import Auth from './pages/Auth/Auth'
+import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
+import AllUsers from './pages/Dashboard/AllUsers/AllUsers';
 
 
 function App() {
@@ -18,6 +20,8 @@ function App() {
         <Route path='/' element={<Home/>} />
         <Route path='/product/:id' element={<ProductDetails/>} />
         <Route path='/auth' element={<Auth/>} />
+        <Route path='/dashboard' element={<Dashboard/>} />
+        <Route path='/allUsers' element={<AllUsers/>} />
       </Routes>
     <Sidebar/>
     <Footer/>
