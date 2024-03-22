@@ -8,7 +8,6 @@ const Footer = () => {
                     Copyright &copy; <span className='text-blue-500'>Am-Mart</span> {new Date().getFullYear()}. All Rights Reserved
                 </p>
             </div>
-            Footer
         </footer>
     );
 };

@@ -18,7 +18,7 @@ const Auth = () => {
     },[navigate])
 
     return (
-        <Container className='py-20' maxW="xl" centerContent>
+        <Container className='py-[122px]' maxW="xl" centerContent>
             <Box d='flex'
             justifyContent="center" p={3} bg={"blue.100"} w="100%" m='40px 0 10px 0' borderRadius='lg' borderWidth='1px'>
                 <img style={{height:'80px', margin: 'auto'}} src={img} />
