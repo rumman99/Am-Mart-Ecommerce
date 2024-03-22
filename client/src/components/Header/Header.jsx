@@ -4,6 +4,7 @@ import { BsBag } from 'react-icons/bs'
 import { CartContext } from '../../context/CartContext';
 import { Link } from 'react-router-dom';
 import logo from '../../img/logo.svg'
+import img from '../../img/default.png'
 
 const Header = () => {
     const [isActive, setIsActive]= useState(true)
@@ -20,7 +21,7 @@ const Header = () => {
             <div className='container mx-auto flex items-center justify-between px-4 md:px-0 lg:px-0 xl:px-0 h-full'>
                 <Link to={'/'}>
                     <div>
-                        <img className='w-[40px]' src={logo} alt="" />
+                        <img className='w-[100px]' src={img} alt="" />
                     </div>
                 </Link>
 
