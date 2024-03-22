@@ -4,26 +4,26 @@ const usersToken = require('../config/userToken');
 
 // Handle Register New User //
 const registerUser = asyncHandler(async(req, res)=>{
-    const {name, email, password, photo}= req.body;
+    const {name, mobile, password, photo}= req.body;
 
-    if(!name || !email || !password){
+    if(!name || !mobile || !password){
         res.status(400);
         throw new Error("Any Field Can't be Empty");
     }
 
-    const alreadyUser= await userModel.findOne({email})
+    const alreadyUser= await userModel.findOne({mobile})
 
     if(alreadyUser){
-        res.status(400);
+        res.status(409);
         throw new Error("User Already Exists");
     }
 
     /// Creating User in DB ////
-    const user= await userModel.create({name, email, password, photo});
+    const user= await userModel.create({name, mobile, password, photo});
     console.log('New User Created Successfully');
 
     if(user){
-        res.status(200).json({_id: user._id, name: user.name, email: user.email, photo: user.photo, token: usersToken(user._id)});
+        res.status(200).json({_id: user._id, name: user.name, mobile: user.mobile, photo: user.photo, token: usersToken(user._id)});
     }
     else{
         res.status(400);
@@ -33,17 +33,17 @@ const registerUser = asyncHandler(async(req, res)=>{
 
     // Handle Login Existed User //
     const loginUser= asyncHandler(async(req, res)=>{
-        const {email, password}= req.body;
+        const {mobile, password}= req.body;
 
         /// Finding Existing User in DB ////
-        const existedUser= await userModel.findOne({email});
+        const existedUser= await userModel.findOne({mobile});
 
         if(existedUser && await (existedUser.compareLoginPassword(password))){
-            res.status(200).json({_id: existedUser._id, name: existedUser.name, email: existedUser.email, photo: existedUser.photo, token: usersToken(existedUser._id)});
+            res.status(200).json({_id: existedUser._id, name: existedUser.name, mobile: existedUser.mobile, photo: existedUser.photo, token: usersToken(existedUser._id)});
         }
         else{
             res.status(401);
-            throw new Error("Invalid Email or Password");
+            throw new Error("Invalid Mobile or Password");
         }
     })
 
@@ -55,7 +55,7 @@ const allUser= asyncHandler(async(req, res)=>{
     if(search){
         searchQuery= {$or: [
             {name: { $regex:search, $options: "i" }},
-            {email: { $regex:search, $options: "i" }}
+            {mobile: { $regex:search, $options: "i" }}
         ]}
     }
     else{

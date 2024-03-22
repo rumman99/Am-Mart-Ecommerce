@@ -4,9 +4,10 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [showPass, setShowPass]= useState(false);
+    const [showPass, setShowPass]= useState(false); //for hide/show pass
     const [userDetails, setUserDetails]= useState({});
-    const [loading, setLoading]= useState(false);
+    const [loading, setLoading]= useState(false); //for loading button
+    const [validMobile, setValidMobile]= useState(false); //for mobile validity
     const toast = useToast()
     const navigate= useNavigate();
 
@@ -14,13 +15,32 @@ const Login = () => {
         e.preventDefault();
         const oldDetails= {...userDetails}
         oldDetails[e.target.name]= e.target.value;
+
+        // Validation for Mobile Number //
+        if(e.target.name === 'mobile'){
+            const mobileRegex= /^0\d{10}$/;
+            if(!mobileRegex.test(e.target.value)){
+                toast({
+                    title: 'Login Failed',
+                    description: "Mobile should start with 0 and 11 digit",
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+                setValidMobile(false);
+            }
+            else{
+                setValidMobile(true);
+            }
+        }
         setUserDetails(oldDetails);
     }
 
+// Submit Button //
     const handleSubmit= async()=>{
         setLoading(true);
 
-        if(!userDetails.email || !userDetails.password){
+        if(!userDetails.mobile || !userDetails.password){
             toast({
                 title: 'Warning',
                 description: "Please Fill all Fields",
@@ -31,9 +51,21 @@ const Login = () => {
             setLoading(false);
             return;
         }
+
+        if(!validMobile){
+            toast({
+                title: 'Warning',
+                description: "Mobile should start with 0 and 11 digit",
+                status: 'warning',
+                duration: 3000,
+                isClosable: true,
+            });
+            setLoading(false);
+            return;
+        }
         
         try{
-            const response= await axios.post('http://localhost:3333/auth/login', {email:userDetails.email, password:userDetails.password}, 
+            const response= await axios.post('http://localhost:3333/auth/login', {mobile:userDetails.mobile, password:userDetails.password}, 
             {
                 headers:
                 {"Content-Type":"application/json"}
@@ -52,7 +84,7 @@ const Login = () => {
         catch(err){
             toast({
                 title: 'Login Failed',
-                description: "Invalid Email of Password",
+                description: "Invalid Mobile or Password",
                 status: 'error',
                 duration: 3000,
                 isClosable: true,
@@ -65,8 +97,8 @@ const Login = () => {
         <VStack spacing={'15px'}>
 
             <FormControl isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Input name='email' defaultValue={userDetails.email} placeholder='Enter Your Name' type='email' onBlur={handleBlur}/>
+                <FormLabel>Mobile Number</FormLabel>
+                <Input name='mobile' defaultValue={userDetails.mobile} placeholder='Enter Mobile' type='number' onBlur={handleBlur} pattern='[0-9]*'/>
             </FormControl>
 
             <FormControl isRequired>
@@ -81,9 +113,9 @@ const Login = () => {
                 </InputGroup>
             </FormControl>
 
-            <Button onClick={handleSubmit} isLoading={loading} colorScheme='blue' width={'100%'} mt={2}>Login Now</Button>
+            <Button onClick={handleSubmit} isLoading={loading} disabled={!validMobile} colorScheme='blue' width={'100%'} mt={2}>Login Now</Button>
 
-            <Button onClick={()=>setUserDetails({email:'guest@example.com', password:'123456789'})} colorScheme='red' width={'100%'} mt={2}>Join as Guest</Button>
+            <Button onClick={()=>setUserDetails({mobile:'01111111111', password:'123456789'}, setValidMobile(true))} colorScheme='red' width={'100%'} mt={2}>Join as Guest</Button>
         </VStack>
     );
 };

@@ -39,7 +39,7 @@ const ProfileModal = ({user, children}) => {
                         fontFamily={'Work sans'}
                         mt={5}
                     >
-                        Email:{user.email}
+                        Mobile:{user.mobile}
                     </Text>
                 </ModalBody>
                     

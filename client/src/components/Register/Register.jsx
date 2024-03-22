@@ -27,6 +27,19 @@ const Register = () => {
                 setPassError('');
             }
         }
+
+        if(e.target.name === 'mobile'){
+            const mobileRegex= /^0\d{10}$/;
+            if(!mobileRegex.test(e.target.value)){
+                toast({
+                    title: 'Login Failed',
+                    description: "Mobile should start with 0 and 11 digit",
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+            }
+        }
     }
 
     const handleFile= async(e)=>{
@@ -77,7 +90,7 @@ const Register = () => {
     const handleSubmit= async()=>{
         setLoading(true);
 
-        if(!userDetails.email || !userDetails.name || !userDetails.password || !userDetails.confirmPassword){
+        if(!userDetails.mobile || !userDetails.name || !userDetails.password || !userDetails.confirmPassword){
             toast({
                 title: 'Warning',
                 description: "Please Fill all Fields",
@@ -88,6 +101,19 @@ const Register = () => {
             setLoading(false);
             return;
         }
+
+        if (!(/^0\d{10}$/.test(userDetails.mobile))) {
+            toast({
+                title: 'Mobile Number Error',
+                description: "Mobile should start with 0 and be 11 digits",
+                status: 'warning',
+                duration: 3000,
+                isClosable: true,
+            });
+            setLoading(false);
+            return;
+        }
+
 
         if(userDetails.password !== userDetails.confirmPassword){
             toast({
@@ -102,7 +128,7 @@ const Register = () => {
         }
         
         try{
-            const response= await axios.post('http://localhost:3333/auth/register', {name:userDetails.name, email:userDetails.email, password:userDetails.password, photo:file}, 
+            const response= await axios.post('http://localhost:3333/auth/register', {name:userDetails.name, mobile:userDetails.mobile, password:userDetails.password, photo:file}, 
             {
                 headers:
                 {"Content-Type":"application/json"}
@@ -119,14 +145,26 @@ const Register = () => {
             navigate('/');
         }
         catch(err){
-            toast({
-                title: 'Registration Failed',
-                description: "User Already Exist!!!",
-                status: 'error',
-                duration: 3000,
-                isClosable: true,
-            });
-            setLoading(false);
+            if(err.response && err.response.status === 409){
+                toast({
+                    title: 'Registration Failed',
+                    description: "User Already Exist!!!",
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+                setLoading(false);
+            }
+            else{
+                toast({
+                    title: 'Registration Failed',
+                    description: "Invalid Mobile Number!!!",
+                    status: 'error',
+                    duration: 3000,
+                    isClosable: true,
+                });
+                setLoading(false);
+            }
         }
     }
 
@@ -139,8 +177,8 @@ const Register = () => {
             </FormControl>
 
             <FormControl isRequired>
-                <FormLabel>Email address</FormLabel>
-                <Input name='email' placeholder='Enter Your Name' type='email' onBlur={handleBlur}/>
+                <FormLabel>Mobile Number</FormLabel>
+                <Input name='mobile' placeholder='Enter Your Name' type='number' onBlur={handleBlur}/>
             </FormControl>
 
             <FormControl isRequired>

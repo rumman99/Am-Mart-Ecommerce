@@ -11,9 +11,9 @@ const UserProvider= ({children})=>{
         const userDetails= JSON.parse(sessionStorage.getItem("user"));
         setUser(userDetails);
 
-        if(userDetails){
-            navigate('/')
-        }
+        // if(userDetails){
+        //     navigate('/')
+        // }
     },[navigate]);
 
 // Logout User //

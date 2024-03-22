@@ -47,7 +47,7 @@ const Header = () => {
                         <MenuDivider/>
                         <MenuItem onClick={logoutUser}>Logout</MenuItem>
                     </MenuList>
-                    </Menu> : <Link to={'/auth'}>LOGIN</Link>}
+                    </Menu> : <Link to={'/auth'}><button className="bg-blue-500 hover:bg-blue-700 text-white font-light py-1 px-4 rounded-full">Login</button></Link>}
                     </div>
                     
                     <div onClick={()=> setIsOpen(!isOpen)}>
