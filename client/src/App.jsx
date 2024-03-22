@@ -5,6 +5,8 @@ import ProductDetails from './pages/ProductDetails/ProductDetails';
 import Header from './components/Header/Header';
 import Footer from './components/Footer/Footer';
 import Sidebar from './components/Sidebar/Sidebar';
+import Auth from './pages/Auth/Auth'
+
 
 function App() {
 
@@ -15,6 +17,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Home/>} />
         <Route path='/product/:id' element={<ProductDetails/>} />
+        <Route path='/auth' element={<Auth/>} />
       </Routes>
     <Sidebar/>
     <Footer/>
