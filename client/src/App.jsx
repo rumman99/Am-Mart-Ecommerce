@@ -8,6 +8,7 @@ import Sidebar from './components/Sidebar/Sidebar';
 import Auth from './pages/Auth/Auth'
 import Dashboard from './pages/Dashboard/Dashboard/Dashboard';
 import AllUsers from './pages/Dashboard/AllUsers/AllUsers';
+import AllProduct from './pages/Dashboard/AllProduct/AllProduct';
 
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path='/auth' element={<Auth/>} />
         <Route path='/dashboard' element={<Dashboard/>} />
         <Route path='/allUsers' element={<AllUsers/>} />
+        <Route path='/allProduct' element={<AllProduct/>} />
       </Routes>
     <Sidebar/>
     <Footer/>

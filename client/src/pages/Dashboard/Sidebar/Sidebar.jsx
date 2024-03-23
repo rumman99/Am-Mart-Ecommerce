@@ -21,7 +21,7 @@ const Sidebar = () => {
                 </div>
                 <div className='d-flex'>
                 <div className='iconStyle'><MdOutlineEventNote /></div>
-                <div><Link to=""><h6>All Orders</h6></Link></div>
+                <div><Link to="/allProduct"><h6>All Product</h6></Link></div>
                 </div>
                 <div className='d-flex'>
                 <div className='iconStyle'><FaNotesMedical /></div>

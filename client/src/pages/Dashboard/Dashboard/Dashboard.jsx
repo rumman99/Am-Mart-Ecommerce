@@ -1,9 +1,19 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Sidebar from '../Sidebar/Sidebar'
 import { Button } from '@chakra-ui/react';
+import { useEffect } from 'react';
 
 const Dashboard = () => {
+    const navigate= useNavigate();
+    
+// Checking User login or not
+    useEffect(()=>{
+        const userDetails= JSON.parse(sessionStorage.getItem("user"));
 
+        if(!userDetails){
+            navigate('/auth')
+        }
+    },[navigate])
 
     return (
         <div>
