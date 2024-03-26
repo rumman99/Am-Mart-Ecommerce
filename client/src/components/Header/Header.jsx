@@ -47,13 +47,13 @@ const Header = () => {
                         <MenuDivider/>
                         <MenuItem onClick={logoutUser}>Logout</MenuItem>
                     </MenuList>
-                    </Menu> : <Link to={'/auth'}><button className="bg-blue-500 hover:bg-blue-700 text-white font-light py-1 px-4 rounded-full">Login</button></Link>}
+                    </Menu> : <Link to={'/auth'}><button className="bg-blue-500 hover:bg-blue-700 text-white font-light py-1 px-4 -mr-2 mt-1 rounded-full">Login</button></Link>}
                     </div>
                     
-                    <div><Link className='mx-4 bg-pink-500 hover:bg-pink-700 text-white font-light py-[5px] px-4 rounded-full' to={'dashboard'}>Dashboard</Link></div>
+                    <div><Link className='mr-4 bg-pink-500 hover:bg-pink-700 text-white font-light py-[5px] px-4 rounded-full' to={'dashboard'}>Dashboard</Link></div>
                     <div onClick={()=> setIsOpen(!isOpen)}>
                         <BsBag className='text-2xl'/>
-                        <div className='bg-red-500 absolute -right-2 -bottom-2 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center'>{itemQuantity}
+                        <div className='bg-red-500 absolute -right-2 -bottom-1 text-[12px] w-[18px] h-[18px] text-white rounded-full flex justify-center items-center'>{itemQuantity}
                         </div>
                     </div>  
                 </div>
